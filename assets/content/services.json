@@ -1,0 +1,66 @@
+[
+  {
+    "icon": "auto_awesome",
+    "title": {
+      "ar": "تطوير تطبيقات Flutter",
+      "en": "Flutter App Development"
+    },
+    "desc": {
+      "ar": "تطوير تطبيقات موبايل وويب باستخدام Flutter مع تركيز على الأداء، تجربة المستخدم، وقابلية التوسع.",
+      "en": "Building high-performance mobile and web applications using Flutter, with a strong focus on UX, performance, and scalability."
+    },
+    "bullets": [
+      { "ar": "Pixel-perfect UI", "en": "Pixel-perfect UI" },
+      { "ar": "تطبيقات Android و iOS من كود واحد", "en": "Single codebase for Android & iOS" },
+      { "ar": "تصميم واجهات حديثة وسلسة", "en": "Modern and smooth UI design" }
+    ]
+  },
+  {
+    "icon": "layers",
+    "title": {
+      "ar": "البنية البرمجية وإدارة الحالة",
+      "en": "Architecture & State Management"
+    },
+    "desc": {
+      "ar": "بناء تطبيقات ببنية نظيفة وقابلة للصيانة باستخدام أفضل ممارسات Flutter.",
+      "en": "Designing maintainable and scalable applications using clean architecture principles."
+    },
+    "bullets": [
+      { "ar": "Clean Architecture", "en": "Clean Architecture" },
+      { "ar": "إدارة الحالة باستخدام Bloc", "en": "Bloc state management" },
+      { "ar": "نماذج بيانات آمنة باستخدام Freezed", "en": "Immutable models with Freezed" }
+    ]
+  },
+  {
+    "icon": "cloud_sync",
+    "title": {
+      "ar": "الربط مع الخوادم وواجهات API",
+      "en": "Backend & API Integration"
+    },
+    "desc": {
+      "ar": "ربط التطبيقات مع أنظمة Backend جاهزة وبناء طبقة بيانات موثوقة.",
+      "en": "Integrating Flutter apps with backend systems and building reliable data layers."
+    },
+    "bullets": [
+      { "ar": "REST API Integration", "en": "REST API integration" },
+      { "ar": "إدارة الشبكة باستخدام Dio", "en": "Networking with Dio" },
+      { "ar": "معالجة الأخطاء وبناء تدفقات آمنة", "en": "Error handling & secure flows" }
+    ]
+  },
+  {
+    "icon": "rocket_launch",
+    "title": {
+      "ar": "النشر والصيانة",
+      "en": "Production & App Publishing"
+    },
+    "desc": {
+      "ar": "تحضير التطبيقات للإطلاق الفعلي مع الالتزام بمتطلبات المتاجر والصيانة بعد النشر.",
+      "en": "Preparing apps for production release and handling post-launch maintenance."
+    },
+    "bullets": [
+      { "ar": "النشر على Google Play و App Store", "en": "Google Play & App Store publishing" },
+      { "ar": "إدارة الإصدارات والتحديثات", "en": "Versioning & updates" },
+      { "ar": "تطبيقات Production-ready", "en": "Production-ready apps" }
+    ]
+  }
+]
