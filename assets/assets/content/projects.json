@@ -1,0 +1,89 @@
+[
+  {
+    "slug": "unigo",
+    "title": {
+      "ar": "uniGo – تطبيق خدمات طلابية",
+      "en": "uniGo – Student Services Mobile App"
+    },
+    "summary": {
+      "ar": "قمت بتطوير ونشر تطبيق موبايل متكامل يخدم الطلاب الوافدين في الأردن، مع التركيز على بنية نظيفة، قابلية التوسع، وتجربة مستخدم مستقرة. شمل دوري التصميم البرمجي، التكامل مع الـ API، بناء أنظمة المصادقة، ونشر التطبيق على متجري Google Play وApp Store.",
+      "en": "Developed and delivered a production-ready mobile application serving international students in Jordan, with a strong focus on clean architecture, scalability, and stable user experience. My role covered application architecture, API integration, authentication flows, and publishing to both Google Play and the App Store."
+    },
+    "role": {
+      "ar": "تطوير تطبيق Flutter بالكامل ونشره",
+      "en": "End-to-end Flutter App Development & Publishing"
+    },
+    "projectType": {
+      "ar": "تطبيق إنتاجي لصالح شركة",
+      "en": "Client Production Application"
+    },
+    "duration": {
+      "ar": "شهر ونصف إلى شهرين",
+      "en": "1.5 – 2 months"
+    },
+    "platforms": ["Android", "iOS"],
+    "tech": [
+      "Flutter",
+      "Clean Architecture",
+      "Bloc",
+      "Freezed",
+      "Dio",
+      "REST API Integration",
+      "Localization (AR / EN)"
+    ],
+    "features": {
+      "ar": [
+        "بناء بنية تطبيق نظيفة وقابلة للتوسع",
+        "نظام تسجيل دخول وإدارة حسابات المستخدمين",
+        "تأكيد الحساب عبر رقم الهاتف باستخدام رسائل SMS",
+        "دعم اللغتين العربية والإنجليزية",
+        "ربط التطبيق مع Backend API جاهز",
+        "تجهيز التطبيق والنشر على Google Play وApp Store",
+        "تنفيذ تحديثات لاحقة بعد الإطلاق"
+      ],
+      "en": [
+        "Implemented a scalable clean architecture",
+        "User authentication and account management system",
+        "Phone number verification via SMS",
+        "Arabic and English localization support",
+        "Backend REST API integration",
+        "App Store & Google Play deployment",
+        "Post-release maintenance and updates"
+      ]
+    },
+    "responsibilities": {
+      "ar": [
+        "تصميم البنية البرمجية للتطبيق",
+        "إدارة الحالة باستخدام Bloc",
+        "بناء طبقة البيانات والتكامل مع الـ API",
+        "تنفيذ أنظمة المصادقة والتحقق",
+        "تحضير التطبيق للنشر والالتزام بمتطلبات المتاجر"
+      ],
+      "en": [
+        "Application architecture design",
+        "State management using Bloc",
+        "API integration and data layer implementation",
+        "Authentication and verification flows",
+        "Store compliance and production release"
+      ]
+    },
+    "thumbnail": "assets/projects/uni_go/mocup_unigo.png",
+    "gallery": [
+      "assets/projects/uni_go/uni_1.jpeg",
+      "assets/projects/uni_go/uni_2.jpeg",
+      "assets/projects/uni_go/uni_3.jpeg",
+      "assets/projects/uni_go/uni_4.jpeg",
+      "assets/projects/uni_go/uni_5.jpeg",
+      "assets/projects/uni_go/uni_6.jpeg",
+      "assets/projects/uni_go/uni_7.jpeg",
+      "assets/projects/uni_go/uni_8.jpeg",
+      "assets/projects/uni_go/uni_9.jpeg",
+      "assets/projects/uni_go/uni_10.jpeg"
+    ],
+    "liveStatus": "Live on Google Play & App Store",
+    "liveUrlPlay": "https://play.google.com/store/apps/details?id=com.unigo.azwty",
+    "liveUrlIos": "https://apps.apple.com/us/app/uni-go/id6753893444",
+
+    "repoUrl": "Private"
+  }
+]
