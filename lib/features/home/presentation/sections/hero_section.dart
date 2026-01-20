@@ -1,6 +1,10 @@
+import 'dart:async';
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_landing_page/core/images/name_images.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/localization/localized_text.dart';
@@ -125,15 +129,16 @@ class HeroSection extends StatelessWidget {
                             const SizedBox(width: 18),
                             Expanded(
                               flex: 4,
-                              child: _Right(
-                                cs,
-                                enableHover: true,
-                                title: _t(context, profile.highlightsTitle),
-                                items: profile.highlights,
-                                iconFromKey: _iconFromKey,
-                                localize: (lt) => _t(context, lt),
-                              ),
-                            ),
+                              child: RotatingPanel(
+                              enableHover: true,
+                        title:_t(context, profile.highlightsTitle),
+                        items: profile.highlights,
+                        iconFromKey: _iconFromKey,
+                        localize:(lt) => _t(context, lt),
+                        imageProvider: const AssetImage(NameImages.logoPng),
+                        )
+
+                        ),
                           ],
                         );
                       },
@@ -263,7 +268,7 @@ class _Left extends StatelessWidget {
         const SizedBox(height: 22),
 
         _TrustedPlatformCard(
-              title: ctaContact, // مثلاً: "التواصل عبر منصة موثوقة"
+              title: ctaContact,
               subtitle:
                   Localizations.localeOf(context).languageCode == 'ar'
                       ? 'أنا بائع نشط على منصة خمسات. يمكنك التواصل معي بأمان عبر المنصة.'
@@ -520,3 +525,182 @@ class _TrustedPlatformCard extends StatelessWidget {
     );
   }
 }
+
+class RotatingPanel extends StatefulWidget {
+  const RotatingPanel({
+    super.key,
+    required this.enableHover,
+    required this.title,
+    required this.items,
+    required this.iconFromKey,
+    required this.localize,
+    required this.imageProvider,
+  });
+
+  final bool enableHover;
+  final String title;
+  final List<dynamic> items;
+  final IconData Function(String key) iconFromKey;
+  final String Function(dynamic localizedText) localize;
+
+  final ImageProvider imageProvider;
+
+  @override
+  State<RotatingPanel> createState() => _RotatingPanelState();
+}
+
+class _RotatingPanelState extends State<RotatingPanel> {
+  Timer? _timer;
+  bool _showImage = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds:2), (_) {
+      if (!mounted) return;
+      setState(() => _showImage = !_showImage);
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // ✅ نفس الأنيميشن بتاع دخول الكارت زي ما عندك
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 700),
+      switchInCurve: Curves.easeOutCubic,
+      switchOutCurve: Curves.easeInCubic,
+      layoutBuilder: (currentChild, previousChildren) {
+        // يخليهم فوق بعض (stack) عشان يبان تأثير "ورا بعض"
+        return Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            ...previousChildren,
+            if (currentChild != null) currentChild,
+          ],
+        );
+      },
+      transitionBuilder: (child, animation) {
+        // flip 3D + fade
+        final rotate = Tween<double>(begin: math.pi / 2, end: 0).animate(animation);
+        final fade = Tween<double>(begin: 0.0, end: 1.0).animate(
+          CurvedAnimation(parent: animation, curve: const Interval(0.15, 1.0, curve: Curves.easeOut)),
+        );
+
+        return AnimatedBuilder(
+          animation: animation,
+          child: child,
+          builder: (_, c) {
+            final isIncoming = (c?.key == ValueKey(_showImage ? 'image' : 'panel'));
+
+            // outgoing يلف للناحية التانية
+            final angle = isIncoming ? rotate.value : -rotate.value;
+
+            return Opacity(
+              opacity: fade.value,
+              child: Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.0014) // perspective
+                  ..rotateY(angle),
+                child: c,
+              ),
+            );
+          },
+        );
+      },
+      child: _showImage
+          ? _ImageCard(
+        key: const ValueKey('image'),
+        enableHover: widget.enableHover,
+        imageProvider: widget.imageProvider,
+      )
+          : _HighlightsCard(
+        key: const ValueKey('panel'),
+        enableHover: widget.enableHover,
+        title: widget.title,
+        items: widget.items,
+        iconFromKey: widget.iconFromKey,
+        localize: widget.localize,
+      ),
+    )
+        .animate()
+        .fadeIn(delay: 150.ms, duration: 500.ms)
+        .moveX(begin: 18, end: 0, duration: 500.ms);
+  }
+}
+
+class _HighlightsCard extends StatelessWidget {
+  const _HighlightsCard({
+    super.key,
+    required this.enableHover,
+    required this.title,
+    required this.items,
+    required this.iconFromKey,
+    required this.localize,
+  });
+
+  final bool enableHover;
+  final String title;
+  final List<dynamic> items;
+  final IconData Function(String key) iconFromKey;
+  final String Function(dynamic localizedText) localize;
+
+  @override
+  Widget build(BuildContext context) {
+    return _Glass(
+      enableHover: enableHover,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900),
+          ),
+          const SizedBox(height: 14),
+          for (int i = 0; i < items.length; i++) ...[
+            _Row(
+              icon: iconFromKey(items[i].icon),
+              title: localize(items[i].title),
+              sub: localize(items[i].desc),
+            ),
+            if (i != items.length - 1) const SizedBox(height: 10),
+          ],
+        ],
+      ),
+    );
+  }
+}
+class _ImageCard extends StatelessWidget {
+  const _ImageCard({
+    super.key,
+    required this.enableHover,
+    required this.imageProvider,
+  });
+
+  final bool enableHover;
+  final ImageProvider imageProvider;
+
+  @override
+  Widget build(BuildContext context) {
+    return _Glass(
+      enableHover: enableHover,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(18),
+        child: AspectRatio(
+          aspectRatio: 16 / 10,
+          child: Image(
+            image: imageProvider,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
+}
+

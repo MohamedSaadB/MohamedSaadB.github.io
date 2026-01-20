@@ -1,0 +1,38 @@
+{
+  "title": { "ar": "سياسة الإلغاء والاسترجاع", "en": "Refund & Cancellation Policy" },
+  "subtitle": {
+    "ar": "هذه السياسة خاصة بالخدمات البرمجية (وليست منتجات جاهزة).",
+    "en": "This policy applies to software services (not physical products)."
+  },
+  "sections": [
+    {
+      "title": { "ar": "طبيعة الخدمة", "en": "Service nature" },
+      "bullets": [
+        { "ar": "الخدمة رقمية وتُنفذ حسب الطلب.", "en": "The service is digital and made-to-order." },
+        { "ar": "لا يوجد استرجاع “منتج” مثل الملابس.", "en": "There is no physical product return." }
+      ]
+    },
+    {
+      "title": { "ar": "نظام الدفع", "en": "Payment structure" },
+      "bullets": [
+        { "ar": "الدفع يكون على مراحل (Milestones).", "en": "Payments are milestone-based." },
+        { "ar": "كل مرحلة لها مخرجات واضحة قبل الانتقال للمرحلة التالية.", "en": "Each milestone has clear deliverables." }
+      ]
+    },
+    {
+      "title": { "ar": "الإلغاء والاسترداد", "en": "Cancellation & refunds" },
+      "bullets": [
+        { "ar": "قبل بدء العمل: يمكن استرداد كامل المبلغ (إن وجد).", "en": "Before work starts: full refund (if paid)." },
+        { "ar": "بعد بدء العمل: يُخصم مقابل الوقت/العمل المنفذ.", "en": "After work starts: deducted for completed work/time." },
+        { "ar": "بعد تسليم مخرجات المرحلة: لا يُسترد مقابل ما تم تسليمه.", "en": "After deliverables are delivered: no refund for delivered work." }
+      ]
+    },
+    {
+      "title": { "ar": "التعديلات", "en": "Revisions" },
+      "bullets": [
+        { "ar": "يشمل الاتفاق عدد تعديلات محدد لكل مرحلة.", "en": "A defined number of revisions per milestone." },
+        { "ar": "أي تغيير جوهري في المتطلبات يترتب عليه إعادة تسعير.", "en": "Major scope changes may require re-quoting." }
+      ]
+    }
+  ]
+}

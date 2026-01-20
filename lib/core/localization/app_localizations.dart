@@ -21,6 +21,22 @@ class AppLocalizations {
     'contact': {'ar': 'تواصل', 'en': 'Contact'},
     'toggle_theme': {'ar': 'الثيم', 'en': 'Theme'},
     'toggle_lang': {'ar': 'EN', 'en': 'AR'},
+    'menu': {'ar': 'القائمة', 'en': 'Menu'},
+    'language': {'ar': 'اللغة', 'en': 'Language'},
+    'theme': {'ar': 'الثيم', 'en': 'Theme'},
+    'more': {'ar': 'المزيد', 'en': 'More'},
+
+    'pricing': {'ar': 'الأسعار', 'en': 'Pricing'},
+    'refund_policy': {'ar': 'سياسة الإلغاء والاسترجاع', 'en': 'Refund Policy'},
+    'checkout': {'ar': 'إتمام الطلب', 'en': 'Checkout'},
+
+    'quick_links': {'ar': 'روابط سريعة', 'en': 'Quick links'},
+    'legal': {'ar': 'سياسات', 'en': 'Legal'},
+    'social': {'ar': 'تواصل', 'en': 'Social'},
+    'work_with_me': {'ar': 'التعاقد عبر', 'en': 'Hire me via'},
+    'copyright':
+    {'ar': '© {year} محمد سعد — جميع الحقوق محفوظة', 'en': '© {year} Mohamed Saad — All rights reserved'},
+
   };
 
   String t(String key) {

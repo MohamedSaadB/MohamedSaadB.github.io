@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_landing_page/core/images/name_images.dart';
 
 import '../../../../core/localization/app_localizations.dart';
 import '../../../../core/widgets/max_width_container.dart';
+import '../../../../core/widgets/site_footer.dart';
 import '../../../settings/settings_cubit.dart';
 import '../sections/about_section.dart';
 import '../sections/contact_section.dart';
@@ -82,6 +84,15 @@ class _HomePageState extends State<HomePage> {
                 key: _contactKey,
                 child: const ContactSection(),
               ),
+              SliverToBoxAdapter(
+                child: SiteFooter(
+                  onServices: () => _scrollTo(_servicesKey),
+                  onProjects: () => _scrollTo(_projectsKey),
+                  onAbout: () => _scrollTo(_aboutKey),
+                  onContact: () => _scrollTo(_contactKey),
+                ),
+              ),
+
               const SliverToBoxAdapter(child: SizedBox(height: 64)),
             ],
           ),
@@ -221,7 +232,31 @@ class _GlassNavBar extends StatelessWidget {
                           Navigator.pop(context);
                           onContact();
                         },
+                      ),_MobileNavItem(
+                        text: AppLocalizations.of(context).t('pricing'),
+                        icon: Icons.payments_outlined,
+                        onTap: () {
+                          Navigator.pop(context);
+                          context.go('/pricing');
+                        },
                       ),
+                      _MobileNavItem(
+                        text: AppLocalizations.of(context).t('refund_policy'),
+                        icon: Icons.policy_outlined,
+                        onTap: () {
+                          Navigator.pop(context);
+                          context.go('/refund-policy');
+                        },
+                      ),
+                      _MobileNavItem(
+                        text: AppLocalizations.of(context).t('checkout'),
+                        icon: Icons.shopping_bag_outlined,
+                        onTap: () {
+                          Navigator.pop(context);
+                          context.go('/checkout');
+                        },
+                      ),
+
 
                       const SizedBox(height: 6),
                       const Divider(height: 1),
@@ -271,11 +306,9 @@ class _GlassNavBar extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    // ✅ نفس الباكجراوند والزجاج
     final bg = cs.surface.withOpacity(isDark ? 0.55 : 0.70);
     final border = cs.outlineVariant.withOpacity(elevated ? 0.45 : 0.25);
 
-    // ✅ Responsive decision
     final w = MediaQuery.sizeOf(context).width;
     final mobile = w < 760;
 
@@ -300,13 +333,11 @@ class _GlassNavBar extends StatelessWidget {
             ],
           ),
 
-          // ✅ نفس Row الأساسي لكن يتكيف
           child: Row(
             children: [
-              // Logo (كما هو)
               SvgPicture.asset(
                 NameImages.logo,
-                height: 44, // 60 على الموبايل كبيرة وبتكسر العرض
+                height: 44,
                 width: 44,
               ),
 
@@ -317,6 +348,31 @@ class _GlassNavBar extends StatelessWidget {
                 _NavButton(text: AppLocalizations.of(context).t('projects'), onTap: onProjects),
                 _NavButton(text: AppLocalizations.of(context).t('about'), onTap: onAbout),
                 _NavButton(text: AppLocalizations.of(context).t('contact'), onTap: onContact),
+                PopupMenuButton<String>(
+                  tooltip: AppLocalizations.of(context).t('more'),
+                  itemBuilder: (context) => [
+                    PopupMenuItem(value: 'pricing', child: Text(AppLocalizations.of(context).t('pricing'))),
+                    PopupMenuItem(value: 'refund', child: Text(AppLocalizations.of(context).t('refund_policy'))),
+                    PopupMenuItem(value: 'checkout', child: Text(AppLocalizations.of(context).t('checkout'))),
+                  ],
+                  onSelected: (v) {
+                    if (v == 'pricing') context.go('/pricing');
+                    if (v == 'refund') context.go('/refund-policy');
+                    if (v == 'checkout') context.go('/checkout');
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    child: Row(
+                      children: [
+                        Icon(Icons.more_horiz, color: cs.onSurfaceVariant),
+                        const SizedBox(width: 6),
+                        Text(AppLocalizations.of(context).t('more')),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 6),
+
                 const SizedBox(width: 6),
               ],
 
@@ -325,7 +381,6 @@ class _GlassNavBar extends StatelessWidget {
 
               if (mobile) ...[
                 const SizedBox(width: 6),
-                // Menu Button (لن يظهر إلا على الهاتف)
                 IconButton(
                   onPressed: () => _openMobileMenu(context),
                   icon: const Icon(Icons.menu),
