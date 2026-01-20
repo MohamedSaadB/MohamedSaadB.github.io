@@ -93,7 +93,6 @@ class _HomePageState extends State<HomePage> {
             right: 0,
             child: SafeArea(
               child: Padding(
-                // ✅ تعديل: إضافة padding أفقي
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 child: MaxWidthContainer(
                   padding: EdgeInsets.zero,
@@ -155,13 +154,130 @@ class _GlassNavBar extends StatelessWidget {
   final VoidCallback onToggleLang;
   final VoidCallback onToggleTheme;
 
+  void _openMobileMenu(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: false,
+      builder: (_) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(22),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: cs.surface.withOpacity(isDark ? 0.82 : 0.92),
+                    border: Border.all(color: cs.outlineVariant.withOpacity(0.35)),
+                    borderRadius: BorderRadius.circular(22),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 44,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: cs.outlineVariant.withOpacity(0.6),
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+
+                      _MobileNavItem(
+                        text: AppLocalizations.of(context).t('services'),
+                        icon: Icons.design_services,
+                        onTap: () {
+                          Navigator.pop(context);
+                          onServices();
+                        },
+                      ),
+                      _MobileNavItem(
+                        text: AppLocalizations.of(context).t('projects'),
+                        icon: Icons.work_outline,
+                        onTap: () {
+                          Navigator.pop(context);
+                          onProjects();
+                        },
+                      ),
+                      _MobileNavItem(
+                        text: AppLocalizations.of(context).t('about'),
+                        icon: Icons.person_outline,
+                        onTap: () {
+                          Navigator.pop(context);
+                          onAbout();
+                        },
+                      ),
+                      _MobileNavItem(
+                        text: AppLocalizations.of(context).t('contact'),
+                        icon: Icons.mail_outline,
+                        onTap: () {
+                          Navigator.pop(context);
+                          onContact();
+                        },
+                      ),
+
+                      const SizedBox(height: 6),
+                      const Divider(height: 1),
+                      const SizedBox(height: 8),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: OutlinedButton.icon(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  onToggleLang();
+                                },
+                                icon: const Icon(Icons.language),
+                                label: Text(AppLocalizations.of(context).t('language')),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: OutlinedButton.icon(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  onToggleTheme();
+                                },
+                                icon: const Icon(Icons.brightness_6),
+                                label: Text(AppLocalizations.of(context).t('theme')),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
+    // ✅ نفس الباكجراوند والزجاج
     final bg = cs.surface.withOpacity(isDark ? 0.55 : 0.70);
     final border = cs.outlineVariant.withOpacity(elevated ? 0.45 : 0.25);
+
+    // ✅ Responsive decision
+    final w = MediaQuery.sizeOf(context).width;
+    final mobile = w < 760;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(18),
@@ -183,21 +299,79 @@ class _GlassNavBar extends StatelessWidget {
                 ),
             ],
           ),
+
+          // ✅ نفس Row الأساسي لكن يتكيف
           child: Row(
             children: [
-              SvgPicture.asset(NameImages.logo,height: 60,width: 60,),
+              // Logo (كما هو)
+              SvgPicture.asset(
+                NameImages.logo,
+                height: 44, // 60 على الموبايل كبيرة وبتكسر العرض
+                width: 44,
+              ),
+
               const Spacer(),
-              _NavButton(text: AppLocalizations.of(context).t('services'), onTap: onServices),
-              _NavButton(text: AppLocalizations.of(context).t('projects'), onTap: onProjects),
-              _NavButton(text: AppLocalizations.of(context).t('about'), onTap: onAbout),
-              _NavButton(text: AppLocalizations.of(context).t('contact'), onTap: onContact),
-              const SizedBox(width: 6),
+
+              if (!mobile) ...[
+                _NavButton(text: AppLocalizations.of(context).t('services'), onTap: onServices),
+                _NavButton(text: AppLocalizations.of(context).t('projects'), onTap: onProjects),
+                _NavButton(text: AppLocalizations.of(context).t('about'), onTap: onAbout),
+                _NavButton(text: AppLocalizations.of(context).t('contact'), onTap: onContact),
+                const SizedBox(width: 6),
+              ],
+
               IconButton(onPressed: onToggleLang, icon: const Icon(Icons.language)),
               IconButton(onPressed: onToggleTheme, icon: const Icon(Icons.brightness_6)),
+
+              if (mobile) ...[
+                const SizedBox(width: 6),
+                // Menu Button (لن يظهر إلا على الهاتف)
+                IconButton(
+                  onPressed: () => _openMobileMenu(context),
+                  icon: const Icon(Icons.menu),
+                  tooltip: AppLocalizations.of(context).t('menu'),
+                ),
+              ],
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _MobileNavItem extends StatelessWidget {
+  const _MobileNavItem({
+    required this.text,
+    required this.icon,
+    required this.onTap,
+  });
+
+  final String text;
+  final IconData icon;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
+    return ListTile(
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: cs.primary.withOpacity(0.12),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: cs.primary.withOpacity(0.22)),
+        ),
+        child: Icon(icon, color: cs.primary),
+      ),
+      title: Text(
+        text,
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900),
+      ),
+      trailing: const Icon(Icons.chevron_right),
+      onTap: onTap,
     );
   }
 }
