@@ -26,7 +26,7 @@ class AppLocalizations {
     'theme': {'ar': 'الثيم', 'en': 'Theme'},
     'more': {'ar': 'المزيد', 'en': 'More'},
 
-    'pricing': {'ar': 'الأسعار', 'en': 'Pricing'},
+    'pricing': {'ar': 'الأسعار وأكمال الطلب', 'en': 'Pricing and ceckout'},
     'refund_policy': {'ar': 'سياسة الإلغاء والاسترجاع', 'en': 'Refund Policy'},
     'checkout': {'ar': 'إتمام الطلب', 'en': 'Checkout'},
 

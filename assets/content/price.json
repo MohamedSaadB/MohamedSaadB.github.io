@@ -1,40 +1,44 @@
 {
   "title": { "ar": "الأسعار", "en": "Pricing" },
   "subtitle": {
-    "ar": "أسعار إرشادية — السعر النهائي يتحدد بعد تحليل المتطلبات وحجم المشروع.",
-    "en": "Guideline pricing — final quote depends on scope and requirements."
+    "ar": "أسعار إرشادية تُظهر التكلفة التقريبية للمشروع. عند إكمال الطلب ستدفع عربون 10% فقط لتأكيد الحجز وبدء تحليل المتطلبات — ويتم خصمه من إجمالي التكلفة.",
+    "en": "Guideline pricing showing an estimated total. On checkout, you pay only a 10% deposit to confirm booking and start requirements review — deducted from the final total."
   },
   "note": {
-    "ar": "الدفع يكون على مراحل (Milestones). لا يتم الدفع داخل الموقع — يتم عبر وسيط مثل خمسات أو تحويل/فاتورة حسب الاتفاق.",
-    "en": "Payments are milestone-based. No on-site payments — done via a mediator (e.g., Khamsat) or invoice/transfer."
+    "ar": "طريقة الدفع: عربون 10% الآن لتأكيد الحجز وبدء العمل (Scope Review) — يُخصم بالكامل من إجمالي تكلفة المشروع. بعد اعتماد المتطلبات يتم تقسيم باقي المبلغ على مراحل (Milestones) حسب الاتفاق.",
+    "en": "Payment: pay a 10% deposit now to confirm booking and start scope review — fully deducted from the project total. The remaining amount can be split into milestones after scope is confirmed."
   },
   "plans": [
     {
       "tag": { "ar": "مناسب للبداية", "en": "Good start" },
       "name": { "ar": "Starter", "en": "Starter" },
-      "priceText": { "ar": "ابتداءً من 300$", "en": "From $300" },
+      "priceText": { "ar": "ابتداءً من 8000 ج.م", "en": "From 8000 EGP" },
       "durationText": { "ar": "3–7 أيام", "en": "3–7 days" },
       "features": [
+        { "ar": "التكلفة التقريبية الإجمالية: ابتداءً من 8000 ج.م", "en": "Estimated total: from 8000 EGP" },
+        { "ar": "الدفع الآن (عربون 10%): 800 ج.م — يُخصم من الإجمالي", "en": "Pay now (10% deposit): 800 EGP — deducted from total" },
         { "ar": "شاشات محدودة + UI نظيف", "en": "Few screens + clean UI" },
         { "ar": "ربط API بسيط", "en": "Basic API integration" },
         { "ar": "تسليم نسخة أولية سريعة", "en": "Fast first delivery" }
       ],
-      "ctaLabel": { "ar": "اطلب عرض سعر", "en": "Request a quote" },
-      "ctaTarget": "checkout"
+      "ctaLabel": { "ar": "إكمال الطلب", "en": "Continue to checkout" },
+      "ctaTarget": "starter"
     },
     {
       "tag": { "ar": "الأكثر طلباً", "en": "Most popular" },
       "name": { "ar": "Standard", "en": "Standard" },
-      "priceText": { "ar": "ابتداءً من 900$", "en": "From $900" },
+      "priceText": { "ar": "ابتداءً من 15000 ج.م", "en": "From 15000 EGP" },
       "durationText": { "ar": "2–4 أسابيع", "en": "2–4 weeks" },
       "features": [
+        { "ar": "التكلفة التقريبية الإجمالية: ابتداءً من 15000 ج.م", "en": "Estimated total: from 15000 EGP" },
+        { "ar": "الدفع الآن (عربون 10%): 1500 ج.م — يُخصم من الإجمالي", "en": "Pay now (10% deposit): 1500 EGP — deducted from total" },
         { "ar": "تجربة مستخدم حديثة + Responsive", "en": "Modern UX + responsive" },
         { "ar": "State management + تنظيم قوي", "en": "State management + solid structure" },
         { "ar": "Firebase/Notifications (عند الحاجة)", "en": "Firebase/notifications (if needed)" }
       ],
       "highlight": true,
-      "ctaLabel": { "ar": "اطلب عرض سعر", "en": "Request a quote" },
-      "ctaTarget": "checkout"
+      "ctaLabel": { "ar": "إكمال الطلب", "en": "Continue to checkout" },
+      "ctaTarget": "standard"
     },
     {
       "tag": { "ar": "للمنتجات الكبيرة", "en": "For larger products" },
@@ -42,28 +46,37 @@
       "priceText": { "ar": "حسب المشروع", "en": "Custom" },
       "durationText": { "ar": "4–8 أسابيع", "en": "4–8 weeks" },
       "features": [
-        { "ar": "معمارية قابلة للتوسع + Clean-ish", "en": "Scalable architecture + clean-ish" },
+        { "ar": "التكلفة الإجمالية: تُحدد بعد تحليل المتطلبات", "en": "Total cost: finalized after scope review" },
+        { "ar": "الدفع الآن: عربون 10% لتأكيد الحجز — يُخصم من الإجمالي", "en": "Pay now: 10% deposit to confirm booking — deducted from total" },
+        { "ar": "معمارية قابلة للتوسع + تنظيم قوي", "en": "Scalable architecture + strong structure" },
         { "ar": "إطلاق مراحل + QA", "en": "Milestones + QA" },
         { "ar": "تحسين أداء وتجربة", "en": "Performance & polish" }
       ],
-      "ctaLabel": { "ar": "ابدأ الآن", "en": "Get started" },
-      "ctaTarget": "checkout"
+      "ctaLabel": { "ar": "إكمال الطلب", "en": "Continue to checkout" },
+      "ctaTarget": "premium"
     }
   ],
   "faqTitle": { "ar": "أسئلة شائعة", "en": "FAQ" },
   "faq": [
     {
-      "q": { "ar": "هل السعر ثابت؟", "en": "Is pricing fixed?" },
+      "q": { "ar": "هل هذه الأسعار نهائية؟", "en": "Are these final prices?" },
       "a": {
-        "ar": "لا. السعر النهائي يعتمد على المتطلبات. هذه أرقام إرشادية فقط.",
-        "en": "No. Final price depends on scope. These are guideline ranges."
+        "ar": "لا. هذه أسعار إرشادية للتقدير المبدئي. السعر النهائي يعتمد على المتطلبات ونطاق العمل ويتم تأكيده بعد تحليل المتطلبات.",
+        "en": "No. These are guideline estimates. Final price depends on scope and is confirmed after requirements review."
       }
     },
     {
-      "q": { "ar": "هل الدفع داخل الموقع؟", "en": "Do you take payments on-site?" },
+      "q": { "ar": "ماذا أدفع الآن؟", "en": "What do I pay now?" },
       "a": {
-        "ar": "لا. يتم الدفع خارج الموقع عبر وسيط مثل خمسات أو فاتورة حسب الاتفاق.",
-        "en": "No. Payments are handled off-site via a mediator (e.g., Khamsat) or invoice."
+        "ar": "تدفع عربون 10% فقط لتأكيد الحجز وبدء تحليل المتطلبات. يتم خصم العربون من إجمالي التكلفة عند اعتماد العرض النهائي.",
+        "en": "You pay only a 10% deposit to confirm booking and start scope review. The deposit is deducted from the final total once the final quote is approved."
+      }
+    },
+    {
+      "q": { "ar": "كيف يتم تحصيل باقي المبلغ؟", "en": "How is the remaining amount paid?" },
+      "a": {
+        "ar": "بعد اعتماد المتطلبات، يتم تقسيم باقي المبلغ على مراحل (Milestones) حسب الاتفاق.",
+        "en": "After scope confirmation, the remaining amount can be split into milestones."
       }
     }
   ]

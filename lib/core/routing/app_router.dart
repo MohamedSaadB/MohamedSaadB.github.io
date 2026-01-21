@@ -14,7 +14,6 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/pricing',
       builder: (context, state) => PricingPage(
-        onGoCheckout: () => context.go('/checkout'),
       ),
     ),
     GoRoute(
@@ -23,8 +22,9 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/checkout',
-      builder: (context, state) => const CheckoutPage(),
+      builder: (context, state) => CheckoutPage(planKey: state.uri.queryParameters['plan']),
     ),
+
 
   ],
 );

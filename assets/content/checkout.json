@@ -1,8 +1,8 @@
 {
   "title": { "ar": "إتمام الطلب", "en": "Checkout" },
   "subtitle": {
-    "ar": "املأ المعلومات الأساسية للحصول على عرض سعر — الدفع يتم خارج الموقع.",
-    "en": "Fill the basics to get a quote — payments are handled off-site."
+    "ar": "سيتم الدفع من خلال خدمة كاشير ",
+    "en": "Payment will be made through the cashier service."
   },
   "steps": {
     "briefTitle": { "ar": "تفاصيل المشروع", "en": "Project brief" },

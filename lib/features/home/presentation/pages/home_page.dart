@@ -353,12 +353,10 @@ class _GlassNavBar extends StatelessWidget {
                   itemBuilder: (context) => [
                     PopupMenuItem(value: 'pricing', child: Text(AppLocalizations.of(context).t('pricing'))),
                     PopupMenuItem(value: 'refund', child: Text(AppLocalizations.of(context).t('refund_policy'))),
-                    PopupMenuItem(value: 'checkout', child: Text(AppLocalizations.of(context).t('checkout'))),
                   ],
                   onSelected: (v) {
                     if (v == 'pricing') context.go('/pricing');
                     if (v == 'refund') context.go('/refund-policy');
-                    if (v == 'checkout') context.go('/checkout');
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
